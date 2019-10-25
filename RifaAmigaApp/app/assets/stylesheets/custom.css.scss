@@ -1,0 +1,11 @@
+// "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+#navbar_main {
+	background-color: #1a7a00
+}
+
+.navbar-brand {
+	color: #d19c1d
+}

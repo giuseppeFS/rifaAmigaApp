@@ -1,0 +1,18 @@
+<h1>Lista de Usuarios</h1>
+<p> <% link_to "Novo usuario", new_user_path %> </p>
+<table>
+	<tr>
+		<th>Email</th>
+		<th>Nome</th>
+	</tr>
+
+	<% @users.each do |user| %>
+		<tr>
+			<td><%= @user.email %></td>
+			<td><%= @user.name  %></td>
+			<td><%= link_to "Alterar", user_edit_path(user) %></td>
+			<td><%= link_to "Mostar", user_show_path(user%></td>
+			<td><%= link_to "Delete", user_path(user), method: :delete, data: {confirm: "Tem certeza que deseja excluir o usuario?" %></td>
+		</tr>
+	<% end %>
+</table>
