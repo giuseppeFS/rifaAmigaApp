@@ -1,21 +1,19 @@
 class User < ApplicationRecord
-  has_one: :wallet
+  has_one :wallet
 
-  before_save { self.email = email.downcase }
+  devise :database_authenticatable
+
+  before_save { 
+    self.email = email.downcase
+   }
 
   validates :cpf, presence: true, 
-                  uniqueness: true, 
-                  length: { maximum: 11 }
+                  uniqueness: true
+
+  validate :cpf_valid?
 
   validates :name, presence: true, 
                    length: { maximum: 80 }
-
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]-\z\i/
-  validates :email, presence: true, 
-                    uniqueness: {case_sensitive: false},
-                    format: { with: VALID_EMAIL_REGEX }
-
-  validates :password, presence: true
 
   validates :address, presence: true, 
                       length: { maximum: 100 }
@@ -29,7 +27,14 @@ class User < ApplicationRecord
                            length: { maximum: 50}  
 
   validates :zipCode, presence: true, 
-                      length: { maximum: 7 }
+                      length: { maximum: 8 }
 
-  has_secure_password
+  private
+
+  def cpf_valid?
+    if !(CPF.new(self.cpf).valid?)
+      errors.add(:cpf, "CPF invalido")
+    end
+  end
+
 end

@@ -3,10 +3,9 @@ class CreateWallet < ActiveRecord::Migration[5.1]
     create_table :wallets do |t|
     	t.integer  :user_id
     	t.float    :balance
+    	t.float    :blocked_balance
 
-    	# Colunas padrao do rails
-    	t.datetime :created_at
-    	t.datetime :updated_at
+    	t.timestamps
     end
   end
 end

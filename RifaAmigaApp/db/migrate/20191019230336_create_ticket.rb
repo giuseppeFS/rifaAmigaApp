@@ -7,9 +7,7 @@ class CreateTicket < ActiveRecord::Migration[5.1]
     	t.datetime :purchase_date
     	t.float    :value
 
-    	# Colunas padroes do rails
-    	t.datetime :created_at
-    	t.datetime :updated_at
+        t.timestamps
     end
   end
 end
